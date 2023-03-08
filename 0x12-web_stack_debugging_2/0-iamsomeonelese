@@ -1,3 +1,17 @@
-#!/usr/bin/env bash
-# Runs the whoami command under the user passed as argument.
-sudo -u "$1" whoami
+#!/bin/bash
+# Usage: ./0-iamsomeoneelse username
+
+# Make sure the script is being run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+# Check if a username was provided as an argument
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 username"
+    exit 1
+fi
+
+# Run whoami command as the specified user
+su - "$1" -c 'whoami'
