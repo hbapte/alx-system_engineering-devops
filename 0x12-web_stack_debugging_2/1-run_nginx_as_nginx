@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # Update nginx.conf to run as nginx user and listen on port 8080
 sed -i 's/user  nginx;/worker_processes auto;\nuser  nginx;\nerror_log \/dev\/stderr warn;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n    server {\n        listen 8080 default_server;\n        root \/var\/www\/html;\n        index index.html index.htm;\n    }\n}/' /etc/nginx/nginx.conf
-
-# Make sure files
 chown -R nginx:nginx /var/www/html
-
-# Start Nginx with the nginx user
 /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf -p /var/run/nginx.pid
 
