@@ -33,20 +33,20 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-# start of parameters for aysuarex.tech
-frontend aysuarex.tech-http-frontend
+# start of parameters for hbapte.me
+frontend hbapte.me-http-frontend
 	bind	 *:80
 	http-request set-header X-Forwarded-Proto http
-	default_backend	 aysuarex.tech-backend
+	default_backend	 hbapte.me-backend
 
 
-frontend  aysuarex.tech-https-frontend
-	bind *:443 ssl crt /etc/ssl/aysuarex.tech.pem
+frontend  hbapte.me-https-frontend
+	bind *:443 ssl crt /etc/ssl/hbapte.me.pem
 	http-request set-header X-Forwarded-Proto https
-        default_backend aysuarex.tech-backend
+        default_backend hbapte.me-backend
 
 
-backend aysuarex.tech-backend
+backend hbapte.me-backend
         balance roundrobin
         server 914-web-01 44.210.150.159:80 check
         server 914-web-02 35.173.47.15:80 check
